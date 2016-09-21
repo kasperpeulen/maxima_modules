@@ -3,6 +3,10 @@ kill(all)$
 load("helper_functions.mac")$
 
 f: 4*x^5+x^2+x$
+
+sol: 3*x^2*log(x)+(x^3+7)/x$
+answer: 3*x^2*log(x)+1$
+
 tests: [
     range(1,5) = [1,2,3,4,5],
     member(rand_sign(1,2), [1,2,-1,-2]),
@@ -11,8 +15,10 @@ tests: [
     coeffs(f,x,3) = 0,
     coeffs(f,x,2) = 1,
     
-    lead_coeff(f,x) = 4
+    lead_coeff(f,x) = 4,
+    
+    correct_terms(answer, sol) = [true, false]
 ]$
-testsPass: lreduce(lambda([u,v], u and v), tests, true);
-if (not testsPass) then print(tests)$
+tests_pass: lreduce(lambda([u,v], u and v), tests, true);
+if (not tests_pass) then print(tests)$
 

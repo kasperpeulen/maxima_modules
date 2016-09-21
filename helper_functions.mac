@@ -17,13 +17,22 @@ rand_sign(a,b) := (
     index: random((b-a + 1) * 2 + 1),
     totalRange[rand(1,b-a) * 2]
 )$
-coeffs(p, x, n) := (
+coeffs(p,x,n) := (
     p: expand(p), 
     map(lambda([i], coeff(p,x,i)), range(0, hipow(p,x)))[n + 1]
 )$
 
-lead_coeff(p, x) := (
+lead_coeff(p,x) := (
     p: expand(p),
     coeffs(p, x, hipow(p,x))
+)$
+
+/** Returns a list which terms of the answer are correct. **/
+correct_terms(answer, sol) := (
+    if (length(args(sol)) # length(args(answer))) then
+        error("answer and sol must have equal terms", args(sol), args(answer)),
+    if (reveal(sol, 1) # Sum(length(args(sol))) or reveal(answer, 1) # Sum(length(args(answer)))) then
+        error("Solution and answer must be a sum of terms."),
+    map(lambda([u], member(u, args(sol))), args(answer))
 )$
 
