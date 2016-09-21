@@ -28,11 +28,11 @@ lead_coeff(p,x) := (
 )$
 
 /** Returns a list which terms of the answer are correct. **/
-correct_terms(answer, sol) := (
-    if (length(args(sol)) # length(args(answer))) then
-        error("answer and sol must have equal terms", args(sol), args(answer)),
-    if (reveal(sol, 1) # Sum(length(args(sol))) or reveal(answer, 1) # Sum(length(args(answer)))) then
-        error("Solution and answer must be a sum of terms."),
-    map(lambda([u], member(u, args(sol))), args(answer))
+correct_terms(ans, sol) := (
+    if (length(args(sol)) # length(args(ans))) then
+        error("ans and sol must have equal terms", args(sol), args(ans)),
+    if (reveal(sol, 1) # Sum(length(args(sol))) or reveal(ans, 1) # Sum(length(args(ans)))) then
+        error("Solution and ans must be a sum of terms."),
+    map(lambda([u], member(u, args(sol))), args(ans))
 )$
 
