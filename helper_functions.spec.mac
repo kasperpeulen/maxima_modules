@@ -17,7 +17,9 @@ tests: [
     
     lead_coeff(f,x) = 4,
     
-    correct_terms(answer, sol) = [true, false]
+    correct_terms(answer, sol) = [true, false],
+    
+    rationalize_numbers(sqrt(9.25)) = sqrt(37/4)
 ]$
 tests_pass: lreduce(lambda([u,v], u and v), tests, true);
 if (not tests_pass) then print(tests)$

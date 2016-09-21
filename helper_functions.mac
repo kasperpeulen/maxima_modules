@@ -29,10 +29,13 @@ lead_coeff(p,x) := (
 
 /** Returns a list which terms of the answer are correct. **/
 correct_terms(ans, sol) := (
-    if (length(args(sol)) # length(args(ans))) then
-        error("ans and sol must have equal terms", args(sol), args(ans)),
     if (reveal(sol, 1) # Sum(length(args(sol))) or reveal(ans, 1) # Sum(length(args(ans)))) then
         error("Solution and ans must be a sum of terms."),
     map(lambda([u], member(u, args(sol))), args(ans))
+)$
+
+rationalize_numbers(expression) ::= block(
+    [ratprint : false, simp : false], 
+    scanmap(lambda([e], if floatnump(e) or bfloatp(e) then ratdisrep(rat(e)) else e), expression)
 )$
 
