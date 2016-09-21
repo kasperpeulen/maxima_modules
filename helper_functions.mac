@@ -1,0 +1,24 @@
+
+range(a,b) := (
+    l : [], 
+    for i from a thru b do (
+        l : append(l, [i])
+    ), 
+    l
+)$
+enable_random() := set_random_state(make_random_state(true))$
+rand(a,b):= (
+    enable_random(), 
+    random(b - a + 1) + a
+)$
+rand_sign(a,b) := (
+    enable_random(),
+    totalRange: append(range(a,b), range(-b,-a)),
+    index: random((b-a + 1) * 2 + 1),
+    totalRange[rand(1,b-a) * 2]
+)$
+coeffs(p, n) := (
+    p: expand(p), 
+    map(lambda([i], coeff(p,x,i)), range(0, hipow(p,x)))[n + 1]
+)$
+
