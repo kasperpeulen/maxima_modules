@@ -7,9 +7,11 @@ tests: [
     range(1,5) = [1,2,3,4,5],
     member(rand_sign(1,2), [1,2,-1,-2]),
     
-    coeffs(f, 5) = 4,
-    coeffs(f, 3) = 0,
-    coeffs(f, 2) = 1
+    coeffs(f,x,5) = 4,
+    coeffs(f,x,3) = 0,
+    coeffs(f,x,2) = 1,
+    
+    lead_coeff(f,x) = 4
 ]$
 testsPass: lreduce(lambda([u,v], u and v), tests, true);
 if (not testsPass) then print(tests)$
